@@ -1,3 +1,3 @@
 $(function() {
-	console.log('do')
+	console.log('s')
 });
