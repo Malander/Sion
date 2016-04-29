@@ -1,0 +1,16 @@
+@import 'essentials';
+@import 'header';
+@import 'footer';
+
+/*
+-------------------------
+Main styles
+-------------------------
+*/
+
+body {
+	color: #000;
+	background: red;
+}
+
+@import 'responsive';

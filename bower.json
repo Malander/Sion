@@ -1,0 +1,34 @@
+{
+  "name": "test",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Malander <marimichele26@gmail.com>"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "jquery": "^2.2.3"
+  },
+  "overrides": {
+    "font-awesome": {
+      "main": "css/font-awesome.css"
+    },
+    "bootstrap": {
+      "main": [
+        "dist/css/bootstrap.css",
+        "dist/js/bootstrap.js"
+      ]
+    }
+  }
+}
