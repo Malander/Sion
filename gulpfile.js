@@ -137,3 +137,7 @@ gulp.task('default', (callback) => {
 
 gulp.task('build', ['extras', 'img', 'rev']);
 
+gulp.task('inject', () => {
+     runSequence('bower', ['vendor-js', 'vendor-css']);
+});
+
