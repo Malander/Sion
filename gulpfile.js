@@ -26,7 +26,7 @@ gulp.task('css', () => {
 // Minify JS  - Push it into "build" - Make a rev - Make a manifest
 gulp.task('js', () => {
   return gulp.src('app/assets/js/*.js')
-  	.pipe($.uglify())
+    .pipe($.uglify())
     .pipe(gulp.dest('build/js/'))
     .pipe($.rev())
     .pipe(gulp.dest('build/js'))
@@ -128,7 +128,7 @@ gulp.task('serve', ['watch'], () => {
 gulp.task('watch', () => {    
     gulp.watch('app/assets/jade/**/*.jade', ['jade']);
     gulp.watch('app/assets/js/*.js', ['js', 'clean']);  
-    gulp.watch('app/assets/css/*.scss', ['css','clean']);
+    gulp.watch('app/assets/css/**/*.scss', ['css','clean']);
 });
 
 gulp.task('default', (callback) => {
