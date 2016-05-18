@@ -117,6 +117,12 @@ gulp.task('extras' , () => {
       .pipe(gulp.dest('build'))
 });
 
+gulp.task('fonts', function() {
+    return gulp.src(['bower_components/**/fonts/*.eot', 'bower_components/**/fonts/*.woff', 'bower_components/**/fonts/*.svg', 'bower_components/**/fonts/*.ttf'])
+    .pipe($.flatten())
+    .pipe(gulp.dest('build/fonts'))
+});
+
 // Static Server + watching scss/html files
 gulp.task('serve', ['watch'], () => {
     browserSync.init({
@@ -132,10 +138,10 @@ gulp.task('watch', () => {
 });
 
 gulp.task('default', (callback) => {
-     runSequence(['watch', 'js', 'css', 'jade','img'], 'bower', ['vendor-js', 'vendor-css'], 'serve', callback);
+     runSequence(['watch', 'js', 'css', 'jade','img', 'fonts'], 'bower', ['vendor-js', 'vendor-css'], 'serve', callback);
 });
 
-gulp.task('build', ['extras', 'img', 'rev']);
+gulp.task('build', ['extras', 'img', 'rev', 'fonts']);
 
 gulp.task('inject', () => {
      runSequence('bower', ['vendor-js', 'vendor-css']);
