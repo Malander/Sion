@@ -88,8 +88,8 @@ gulp.task('serve', ['watch'], () => {
 // Watch for changes
 gulp.task('watch', () => {    
     gulp.watch('app/assets/jade/**/*.jade', ['jade']);
-    gulp.watch('app/assets/js/*.js', ['js', 'clean']);  
-    gulp.watch('app/assets/css/**/*.scss', ['css','clean']);
+    gulp.watch('app/assets/js/*.js', ['js']);  
+    gulp.watch('app/assets/css/**/*.scss', ['css']);
 });
 
 gulp.task('default', (callback) => {
