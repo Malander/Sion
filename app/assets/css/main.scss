@@ -1,16 +1,11 @@
-@import 'essentials';
-@import 'header';
-@import 'footer';
+@import 'base/colors';
+@import 'base/base';
+@import 'hacks/shame';
+@import 'hacks/overwrites';
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/main';
+@import 'module/buttons';
+@import 'state/state';
 
-/*
--------------------------
-Main styles
--------------------------
-*/
-
-body {
-	color: #000;
-	background: orange;
-}
-
-@import 'responsive';
+@import 'responsive/responsive';
