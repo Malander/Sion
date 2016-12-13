@@ -4,3 +4,4 @@ src/assets/
 dist/
 .DS_Store
 build
+/yarn.lock

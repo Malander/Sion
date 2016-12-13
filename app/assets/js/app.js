@@ -1,3 +1,3 @@
 $(function() {
-	console.log('s')
+	console.log('asdasd')
 });

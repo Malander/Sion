@@ -27,15 +27,15 @@ gulp.task('js', () => {
     .pipe(browserSync.stream());
 });
 
-// Compile JADE into .html - Push it into build
-gulp.task('jade', () => {
-  return gulp.src(['app/assets/jade/**/*.jade', '!app/assets/jade/template.jade', '!app/assets/jade/blocks/*.jade'])
-  // MULTILANGUAGE SUPPORT, '!app/assets/jade/en/template.jade', '!app/assets/jade/en/en-blocks/*.jade'])
+// Compile pug into .html - Push it into build
+gulp.task('pug', () => {
+  return gulp.src(['app/assets/pug/**/*.pug', '!app/assets/pug/master.pug', '!app/assets/pug/partials/*.pug'])
     .pipe($.plumber())
-    .pipe($.jade({pretty: true}))
+    .pipe($.pug({pretty:true}))
     .pipe(gulp.dest('build'))
     .pipe(browserSync.stream());
 })
+    
 
 // Compress images
 gulp.task('img', () => {
@@ -47,7 +47,7 @@ gulp.task('img', () => {
 // Take main files from bower-components - Push them into app/assets/vendor
 gulp.task('bower', () => {
     return gulp.src(mainBowerFiles(), { base: 'bower_components' })
-        .pipe(gulp.dest('app/assets/vendor'))
+      .pipe(gulp.dest('app/assets/vendor'))
 });
 
 // Take .js files into app/assets/vendor - Minify them - Push them into build/js
@@ -87,13 +87,13 @@ gulp.task('serve', ['watch'], () => {
 
 // Watch for changes
 gulp.task('watch', () => {    
-    gulp.watch('app/assets/jade/**/*.jade', ['jade']);
+    gulp.watch('app/assets/pug/**/*.pug', ['pug']);
     gulp.watch('app/assets/js/*.js', ['js']);  
     gulp.watch('app/assets/css/**/*.scss', ['css']);
 });
 
 gulp.task('default', (callback) => {
-     runSequence(['watch', 'js', 'css', 'jade','img', 'fonts'], 'bower', ['vendor-js', 'vendor-css'], 'serve', callback);
+     runSequence(['watch', 'js', 'css', 'pug','img', 'fonts'], 'bower', ['vendor-js', 'vendor-css'], 'serve', callback);
 });
 
 gulp.task('build', ['extras', 'img', 'fonts']);
