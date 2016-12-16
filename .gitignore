@@ -1,7 +1,5 @@
 node_modules/
 bower_components/
-src/assets/
-dist/
+app/assets/vendor
 .DS_Store
-build
 /yarn.lock

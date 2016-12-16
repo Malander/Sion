@@ -4,9 +4,9 @@ var $               = require('gulp-load-plugins')();
 var mainBowerFiles  = require('main-bower-files');
 var browserSync     = require('browser-sync').create();
 var runSequence     = require('run-sequence');
-var rimraf          = require('rimraf');
-var path            = require('path');
-var through         = require('through2');
+// var rimraf          = require('rimraf');
+// var path            = require('path');
+// var through         = require('through2');
 
 // Compile SCSS into css - Autoprefix it - Minify it - Push it into /build - Make a rev - Make a manifest
 gulp.task('css', () => {
