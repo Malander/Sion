@@ -30,12 +30,12 @@ gulp.task('js', () => {
 // Compile pug into .html - Push it into build
 gulp.task('pug', () => {
   return gulp.src(['app/assets/pug/**/*.pug', '!app/assets/pug/master.pug', '!app/assets/pug/partials/*.pug'])
+    .pipe($.changed('build', {extension: '.html'}))
     .pipe($.plumber())
     .pipe($.pug({pretty:true}))
     .pipe(gulp.dest('build'))
     .pipe(browserSync.stream());
 })
-    
 
 // Compress images
 gulp.task('img', () => {

@@ -3,3 +3,4 @@ bower_components/
 app/assets/vendor
 .DS_Store
 /yarn.lock
+build/
