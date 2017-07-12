@@ -4,6 +4,7 @@ var $               = require('gulp-load-plugins')();
 var mainBowerFiles  = require('main-bower-files');
 var browserSync     = require('browser-sync').create();
 var runSequence     = require('run-sequence');
+var revDel          = require('rev-del');
 // var rimraf          = require('rimraf');
 // var path            = require('path');
 // var through         = require('through2');
@@ -15,8 +16,37 @@ gulp.task('css', () => {
     .pipe($.plumber())
     .pipe($.autoprefixer('last 5 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
     .pipe($.cleanCss({compatibility: 'ie8'}))
-    .pipe( gulp.dest('build/css'))
+    // .pipe($.rev())
+    // .pipe( gulp.dest('build/css'))
+    // .pipe($.rev.manifest())
+    .pipe(gulp.dest('build/css'))
     .pipe(browserSync.stream());
+});
+
+gulp.task('css-vers', () => {
+  return gulp.src('build/css/main.css')
+    .pipe($.rev())
+    .pipe( gulp.dest('build/css'))
+    .pipe($.rev.manifest())
+    .pipe(revDel({ dest: 'build/css' })) 
+    .pipe( gulp.dest('build/css'));
+});
+
+gulp.task('js-vers', () => {
+  return gulp.src('build/js/app.js')
+    .pipe($.rev())
+    .pipe( gulp.dest('build/js'))
+    .pipe($.rev.manifest())
+    .pipe(revDel({ dest: 'build/js' }))
+    .pipe( gulp.dest('build/js'));
+});
+
+gulp.task("rev", ["css-vers", "js-vers"], function() {
+  var manifest = gulp.src("build/**/rev-manifest.json");
+
+  return gulp.src("build/**/*.html")
+  .pipe($.revReplace({manifest: manifest}))
+  .pipe(gulp.dest('build'));
 });
 
 // Minify JS  - Push it into "build" - Make a rev - Make a manifest
@@ -96,7 +126,7 @@ gulp.task('default', (callback) => {
      runSequence(['watch', 'js', 'css', 'pug','img', 'fonts'], 'bower', ['vendor-js', 'vendor-css'], 'serve', callback);
 });
 
-gulp.task('build', ['extras', 'img', 'fonts']);
+gulp.task('build', ['extras', 'img', 'fonts', 'rev']);
 
 gulp.task('inject', () => {
      runSequence('bower', ['vendor-js', 'vendor-css']);
