@@ -8,6 +8,7 @@ var revDel          = require('rev-del');
 // var rimraf          = require('rimraf');
 // var path            = require('path');
 // var through         = require('through2');
+var RevAll = require('gulp-rev-all');
 
 // Compile SCSS into css - Autoprefix it - Minify it - Push it into /build - Make a rev - Make a manifest
 gulp.task('css', () => {
@@ -15,7 +16,6 @@ gulp.task('css', () => {
     .pipe($.sass().on('error', $.sass.logError))
     .pipe($.plumber())
     .pipe($.autoprefixer('last 5 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-    .pipe($.cleanCss({compatibility: 'ie8'}))
     // .pipe($.rev())
     // .pipe( gulp.dest('build/css'))
     // .pipe($.rev.manifest())
@@ -41,13 +41,33 @@ gulp.task('js-vers', () => {
     .pipe( gulp.dest('build/js'));
 });
 
-gulp.task("rev", ["css-vers", "js-vers"], function() {
-  var manifest = gulp.src("build/**/rev-manifest.json");
 
-  return gulp.src("build/**/*.html")
-  .pipe($.revReplace({manifest: manifest}))
-  .pipe(gulp.dest('build'));
+
+
+gulp.task('rev', function () {
+
+  gulp.src('build/**/*')
+    .pipe(RevAll.revision({dontRenameFile:['.html','css/vendor.css','js/vendor.js','.woff','.ttf','.eot','.svg','.json'], debug:true}))
+    .pipe(gulp.dest('build'))
+    .pipe(RevAll.manifestFile())
+    .pipe(gulp.dest('build'));
+
 });
+
+
+
+// gulp.task("rev", ["css-vers", "js-vers"], function() {
+//   var manifest = gulp.src("build/**/rev-manifest.json");
+
+//   return gulp.src("build/**/*.html")
+//   .pipe($.revReplace({manifest: manifest}))
+//   .pipe(gulp.dest('build'));
+// });
+
+
+
+
+
 
 // Minify JS  - Push it into "build" - Make a rev - Make a manifest
 gulp.task('js', () => {
