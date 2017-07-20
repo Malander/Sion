@@ -23,36 +23,36 @@ gulp.task('css', () => {
     .pipe(browserSync.stream());
 });
 
-gulp.task('css-vers', () => {
-  return gulp.src('build/css/main.css')
-    .pipe($.rev())
-    .pipe( gulp.dest('build/css'))
-    .pipe($.rev.manifest())
-    .pipe(revDel({ dest: 'build/css' })) 
-    .pipe( gulp.dest('build/css'));
-});
+// gulp.task('css-vers', () => {
+//   return gulp.src('build/css/main.css')
+//     .pipe($.rev())
+//     .pipe( gulp.dest('build/css'))
+//     .pipe($.rev.manifest())
+//     .pipe(revDel({ dest: 'build/css' })) 
+//     .pipe( gulp.dest('build/css'));
+// });
 
-gulp.task('js-vers', () => {
-  return gulp.src('build/js/app.js')
-    .pipe($.rev())
-    .pipe( gulp.dest('build/js'))
-    .pipe($.rev.manifest())
-    .pipe(revDel({ dest: 'build/js' }))
-    .pipe( gulp.dest('build/js'));
-});
-
-
+// gulp.task('js-vers', () => {
+//   return gulp.src('build/js/app.js')
+//     .pipe($.rev())
+//     .pipe( gulp.dest('build/js'))
+//     .pipe($.rev.manifest())
+//     .pipe(revDel({ dest: 'build/js' }))
+//     .pipe( gulp.dest('build/js'));
+// });
 
 
-gulp.task('rev', function () {
 
-  gulp.src('build/**/*')
-    .pipe(RevAll.revision({dontRenameFile:['.html','css/vendor.css','js/vendor.js','.woff','.ttf','.eot','.svg','.json'], debug:true}))
-    .pipe(gulp.dest('build'))
-    .pipe(RevAll.manifestFile())
-    .pipe(gulp.dest('build'));
 
-});
+// gulp.task('rev', function () {
+
+//   gulp.src('build/**/*')
+//     .pipe(RevAll.revision({dontRenameFile:['.html','css/vendor.css','js/vendor.js','.woff','.ttf','.eot','.svg','.json'], debug:true}))
+//     .pipe(gulp.dest('build'))
+//     .pipe(RevAll.manifestFile())
+//     .pipe(gulp.dest('build'));
+
+// });
 
 
 
