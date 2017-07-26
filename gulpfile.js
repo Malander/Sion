@@ -26,7 +26,7 @@ var del             = require('del');
 */
 
 gulp.task('scss', ['pug'], () => {
-  return gulp.src('app/assets/scss/*.scss')
+  return gulp.src('app/assets/scss/**/*.scss')
     .pipe($.sass().on('error', $.sass.logError))
     .pipe($.autoprefixer('last 5 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
     .pipe($.cleanCss({compatibility: 'ie8'}))
@@ -196,7 +196,7 @@ gulp.task('serve', () => {
 
     gulp.watch('app/assets/pug/**/*.pug', ['pug']);
     gulp.watch('app/assets/js/*.js', ['js']);  
-    gulp.watch('app/assets/css/**/*.scss', ['sass']);
+    gulp.watch('app/assets/scss/**/*.scss', ['scss']);
 });
 
 /*
@@ -235,7 +235,7 @@ gulp.task('clean', ['pug'], () => {
 | Launch this to start your environment
 |
 */
-gulp.task('default', ['sass', 'js', 'pug', 'fonts', 'serve', 'inject']);
+gulp.task('default', ['scss', 'js', 'pug', 'fonts', 'serve', 'inject']);
 
 
 /*
