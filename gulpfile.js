@@ -25,7 +25,7 @@ var del             = require('del');
 |
 */
 
-gulp.task('sass', () => {
+gulp.task('sass', ['pug'], () => {
   return gulp.src('app/assets/css/*.scss')
     .pipe($.sass().on('error', $.sass.logError))
     .pipe($.autoprefixer('last 5 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
@@ -44,7 +44,7 @@ gulp.task('sass', () => {
 |
 */
 
-gulp.task('js', () => {
+gulp.task('js', ['pug'], () => {
   return gulp.src('app/assets/js/*.js')
     .pipe($.uglify())
     .pipe(gulp.dest('build/assets/js'))
@@ -222,7 +222,7 @@ gulp.task('rev', ['clean'], () => {
 
 });
 
-gulp.task('clean', () => {
+gulp.task('clean', ['pug'], () => {
   return del('build/assets/**/*.*.*')
 })
 
