@@ -63,7 +63,7 @@ gulp.task('js', () => {
 
 gulp.task('pug', () => {
   return gulp.src(['app/assets/pug/**/*.pug', '!app/assets/pug/layouts/**/*'])
-    .pipe($.changed('build', {extension: '.html'}))
+    .pipe($.changed('build', {extension: '.html', hasChanged: $.changed.compareContents}))
     .pipe($.plumber())
     .pipe($.pug({pretty:true}))
     .pipe(gulp.dest('build'))
