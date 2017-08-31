@@ -135,6 +135,8 @@ gulp.task('serve', ['watch'], () => {
     });
 });
 
+asdasdas
+
 // Watch for changes
 gulp.task('watch', () => {    
     gulp.watch('app/assets/pug/**/*.pug', ['pug']);
